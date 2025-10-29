@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srunix86 - Open Source Operating System</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(to bottom, #4a6b8a 0%, #2c3e50 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3),
+                        inset 0 1px 0 rgba(255,255,255,0.2);
+            border: 1px solid #1a2530;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        nav {
+            background: linear-gradient(to bottom, #5d7a9a 0%, #3c556e 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25),
+                        inset 0 1px 0 rgba(255,255,255,0.15);
+            border: 1px solid #2c3e50;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        nav li {
+            margin: 0 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+        nav a:hover {
+            background: rgba(255,255,255,0.1);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+        }
+        section {
+            background: linear-gradient(to bottom, #ffffff 0%, #f8f8f8 100%);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2),
+                        inset 0 1px 0 rgba(255,255,255,0.8);
+            border: 1px solid #d0d0d0;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+        }
+        code {
+            background: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            padding: 3px 8px;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+        }
+        pre {
+            background: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+            border: 1px solid #d0d0d0;
+            border-radius: 6px;
+            padding: 20px;
+            overflow-x: auto;
+            box-shadow: inset 0 1px 5px rgba(0,0,0,0.1);
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 25px;
+            color: #666;
+            font-size: 0.9em;
+            background: linear-gradient(to bottom, #e8e8e8 0%, #d8d8d8 100%);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15),
+                        inset 0 1px 0 rgba(255,255,255,0.5);
+            border: 1px solid #c0c0c0;
+        }
+        a {
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: 500;
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+        }
+        a:hover {
+            color: #3498db;
+            text-decoration: underline;
+        }
+        .button {
+            display: inline-block;
+            background: linear-gradient(to bottom, #4a6b8a 0%, #2c3e50 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3),
+                        inset 0 1px 0 rgba(255,255,255,0.2);
+            border: 1px solid #1a2530;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            transition: all 0.2s ease;
+            margin: 5px;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        .button:hover {
+            background: linear-gradient(to bottom, #5b7c9b 0%, #3c556e 100%);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4),
+                        inset 0 1px 0 rgba(255,255,255,0.2);
+            text-decoration: none;
+            color: white;
+        }
+        .button.download {
+            background: linear-gradient(to bottom, #5b7c9b 0%, #4a6b8a 100%);
+            border: 1px solid #3c556e;
+        }
+        .button.download:hover {
+            background: linear-gradient(to bottom, #6b8cab 0%, #5b7c9b 100%);
+        }
+        .contact-info {
+            background: linear-gradient(to bottom, #f0f0f0 0%, #e8e8e8 100%);
+            border: 1px solid #d0d0d0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .download-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(to bottom, #f8f8f8 0%, #f0f0f0 100%);
+            border-radius: 8px;
+            border: 1px solid #d0d0d0;
+        }
+        .download-text {
+            flex: 1;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Srunix86 Operating System</h1>
+        <p style="font-size: 1.2em; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">An open-source multi-user Unix-like operating system for x86 architecture</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#main">Main</a></li>
+            <li><a href="#history">History</a></li>
+            <li><a href="#development">Development</a></li>
+            <li><a href="#iso">ISO</a></li>
+        </ul>
+    </nav>
+    
+    <section id="main">
+        <h2>Main</h2>
+        <p>Srunix86 is an open-source multi-user operating system, a Unix-like system. It is a rework of the original Srunix, which was created a long time ago by the same developers and was subsequently lost.</p>
+        <p>The operating system is written for the x86 architecture and runs in 64-bit mode.</p>
+        <p>Srunix86 is a complex project. The operating system itself contains a lot of components; it meets all the requirements to be called an OS. It has its own pseudo file system (bkFS), which is a reimagining of UFS - the Unix File System. The system features a Unix-like login screen, multitasking, TTY, and much more. The system complies with all SUS (Single UNIX Specification) standards but still cannot be called Unix.</p>
+        <p>Currently, the system lacks utilities for disk partitioning and installation onto a physical hard drive, but it can be installed on a real disk using Linux or BSD LiveCD systems. The original Srunix was distributed under the BSD license; Srunix R.E. continues this tradition and is also distributed under the open-source BSD 3.0 license. The file system supports POSIX standards. The file system, like everything else in the OS, is built completely from scratch, with the exception of GRUB2, which boots the OS. You can write your own program for the OS by simply creating a .h file, placing it in <code>src/</code>, linking to it in the kernel, and then compiling it. Currently, the OS is created mainly for interest and is not intended for large-scale tasks.</p>
+    </section>
+    
+    <section id="history">
+        <h2>History</h2>
+        <p>The original Srunix was created a long time ago by one person. It was a kernel for YobaOS, which was being developed for printing machines with a processor, but no one had heard of this operating system, let alone its kernel, and development halted. However, in 2022, development began on Srunix86 for personal computers with amd64 processors. Currently, Srunix86 only supports VGA mode and only runs on older or specific PCs with Pentium processors. On modern PCs, the OS is unlikely to boot. The original Srunix was lost forever.</p>
+    </section>
+    
+    <section id="development">
+        <h2>Development</h2>
+        <p>If you want to help with the development of Srunix R.E., you can write to the lead developer at the email address below or use the contact buttons:</p>
+        
+        <div class="contact-info">
+            <p><strong>Lead Developer Email:</strong> <a href="mailto:srunix@yandex.ru">srunix@yandex.ru</a></p>
+            <a href="mailto:srunix@yandex.ru" class="button">Contact Developer</a>
+        </div>
+        
+        <p>If you don't know how to code but want to support the project's development, you can simply write a support email or donate via the DonationAlerts platform:</p>
+        <a href="https://www.donationalerts.com/r/srunix" class="button">Support via DonationAlerts</a>
+        
+        <p>The Russian-language Telegram channel for the project, where the developer shares thoughts and news about Srunix:</p>
+        <a href="https://t.me/srunixre" class="button">Join Telegram Channel</a>
+    </section>
+    
+    <section id="iso">
+        <h2>ISO</h2>
+        
+        <div class="download-row">
+            <div class="download-text">
+                <p><strong>Ready to try Srunix86?</strong> Download the latest ISO image and run it in QEMU to experience our operating system.</p>
+            </div>
+            <a href="https://github.com/srunix86/srunix/releases" class="button download">Download ISO</a>
+        </div>
+        
+        <p>Download the dependencies for compilation: <code>nasm gcc binutils grub2 xorriso make mtools qemu-system qemu</code>, then use one of the make files:</p>
+        <pre><code>chmod 777 make
+./make</code></pre>
+        <p>After that, you will be able to run Srunix86 via qemu-system-amd64 using the command <code>qemu-system-amd64 srunix86.iso</code></p>
+    </section>
+    
+    <footer>
+        <p>Srunix86 &copy; 2022 - Open Source BSD 3.0 License</p>
+        <p>Built with the spirit of classic operating systems</p>
+    </footer>
+</body>
+</html>
